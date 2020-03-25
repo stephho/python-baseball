@@ -37,8 +37,8 @@ identifiers.columns = ['game_id', 'year']
 # concatenate the identifiers df to the games df
 games = pd.concat([games, identifiers], axis = 1, sort = False)
 
-# replace the n/a values in the games df with empty strings
-games = games.fillna('')
+# replace the n/a values in the games df with a space
+games = games.fillna(' ')
 
 # make the type column categorical to indicate data type
 games.loc[:,'type'] = pd.Categorical(games.loc[:, 'type'])
