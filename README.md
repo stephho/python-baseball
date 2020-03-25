@@ -4,7 +4,7 @@
 [Building baseball data visualizations with Python](https://app.pluralsight.com/projects/building-baseball-data-visualizations-with-python)
 
 ## Modules 
-1. Game files: Clean and import data
+1. [Game files: Clean and import data](stats/data.ipynb)
 2. Attendance: Select and plot data
 3. Pitching: Group data
 4. Offense: Reshape with pivot
@@ -13,5 +13,6 @@
 
 ```
 Retrosheet Notice:
-The information used here was obtained free of charge from and is copyrighted by Retrosheet. Interested parties may contact Retrosheet at "www.retrosheet.org".
+The information used here was obtained free of charge from and is copyrighted by Retrosheet. 
+Interested parties may contact Retrosheet at "www.retrosheet.org".
 ```
