@@ -7,7 +7,8 @@ import os
 import glob
 import pandas as pd
 
-# all of our game files live in the 'games' folder with extension .EVE. create a list of the file names of the game files
+# all of our game files live in the 'games' folder with extension .EVE
+# create a list of the file names of the game files
 game_files = glob.glob(os.path.join(os.getcwd(), 'games','*.EVE'))
 game_files.sort()
 
@@ -20,13 +21,14 @@ for game_file in game_files:
 # concatenate the dataframes in game_frames into one dataframe
 games = pd.concat(game_frames)
 
-# clean 'multi5' column by replacing any rows that have a value of '??' with an empty starting
+# clean 'multi5' column by replacing any rows that have a value of '??' with an empty string
 games.loc[games['multi5'] == '??', ['multi5']] = ''
 
 # extract game id using regex into a dataframe called identifiers
 identifiers = games['multi2'].str.extract(r'(.LS(\d{4})\d{5})')
 
-# not every row in games df has a game id, so the regex will return a n/a value in the identifiers df for those rows. we forward fill these n/a values with the preceding game id so that every row has a game id
+# not every row in games df has a game id, so the regex will return a n/a value in the identifiers df for those rows
+# forward fill these n/a values with the preceding game id so that every row has a game id
 identifiers = identifiers.fillna(method = 'ffill')
 
 # rename column labels of identifiers dataframe
@@ -38,5 +40,8 @@ games = pd.concat([games, identifiers], axis = 1, sort = False)
 # replace the n/a values in the games df with empty strings
 games = games.fillna('')
 
+# make the type column categorical to indicate data type
+games.loc[:,'type'] = pd.Categorical(games.loc[:, 'type'])
+
 # this is the final, cleaned games dataframe!
-games.head()
+print(games.head())
